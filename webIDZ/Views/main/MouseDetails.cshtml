@@ -1,0 +1,66 @@
+﻿@model webIDZ.Models.Entities.Mouse
+
+@{
+    ViewBag.Title = "MouseDetails";
+}
+
+<h2>MouseDetails</h2>
+@Html.ActionLink("Добавить новую запись", "CreateMouse", "main", new { @class = "btn btn-default" })
+<div>
+    <h4>Mouse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Types.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Types.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pregnancy.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pregnancy.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Embryos_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Embryos_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catch.datacatch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catch.datacatch)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Перейти на страницу отлова", "CatchDetails", "main", new { catchID = Model.Catch_ID }, null) |
+    @Html.ActionLink("Назад", "MiceList")
+</p>

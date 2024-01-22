@@ -1,0 +1,106 @@
+﻿@model webIDZ.Models.Entities.Catch
+
+@{
+    ViewBag.Title = "DeleteCatch";
+}
+
+<h2>Удаление записи</h2>
+
+<h3>Вы уверены, что хотите удалить данную запись?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.datacatch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datacatch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zones.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stations.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Biotope)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Biotope)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distrtict)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distrtict)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Place)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coords_X)
+        </dt>
+
+        <dd>
+            @Model.Coords_X
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coords_Y)
+        </dt>
+
+        <dd>
+            @Model.Coords_Y
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Traps_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Traps_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catched_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catched_Amount)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "CatchesList")
+        </div>
+    }
+</div>

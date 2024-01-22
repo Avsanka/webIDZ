@@ -1,0 +1,46 @@
+﻿@model List<webIDZ.Models.Entities.Catch>
+@{
+    ViewBag.Title = "CatchesList";
+}
+<h2>Список отловов</h2>
+@if(User.IsInRole("Admin")) 
+{ 
+    @Html.ActionLink("Добавить новую запись", "CreateCatch", "main", new { @class="btn btn-default" })
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Дата отлова</th>
+            <th class="text-center">Район</th>
+            <th class="text-center">Место</th>
+            <th class="text-center">Поймано особей</th>
+            <th class="text-center">#</th>
+            @if(User.IsInRole("Admin"))
+            {
+            <th class="text-center">#</th>
+            <th class="text-center">#</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+        <tr class="text-center">
+            <td>@c.DateCatch.ToShortDateString()</td>
+            <td>@c.Distrtict</td>
+            <td>@c.Place</td>
+            <td>@c.Catched_Amount</td>
+            @if(User.Identity.IsAuthenticated)
+            {
+                <td>@Html.ActionLink("Подробнее", "CatchDetails", "main", new { catchID = c.ID_Catch }, null)</td>
+                
+                if(User.IsInRole("Admin")) {
+                    <td>@Html.ActionLink("Редактировать", "EditCatch", new { controller = "main", catchID = c.ID_Catch }, null)</td>
+                    <td>@Html.ActionLink("Удалить", "DeleteCatch", new { controller = "main", catchID = c.ID_Catch }, null)</td>
+                }
+            }
+        </tr>
+        }
+    </tbody>
+</table>

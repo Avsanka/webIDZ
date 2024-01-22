@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MiceCatchModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Catch">
+    <Key>
+      <PropertyRef Name="ID_Catch" />
+    </Key>
+    <Property Name="ID_Catch" Type="int" Nullable="false" />
+    <Property Name="DateCatch" Type="date" Nullable="false" />
+    <Property Name="Zone_ID" Type="int" Nullable="false" />
+    <Property Name="Station_ID" Type="int" Nullable="false" />
+    <Property Name="Biotope" Type="varchar" MaxLength="50" />
+    <Property Name="Distrtict" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Place" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Coords_X" Type="decimal" Precision="8" Scale="6" Nullable="false" />
+    <Property Name="Coords_Y" Type="decimal" Precision="8" Scale="6" Nullable="false" />
+    <Property Name="Traps_Amount" Type="int" Nullable="false" />
+    <Property Name="Catched_Amount" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Mouse">
+    <Key>
+      <PropertyRef Name="ID_Mouse" />
+    </Key>
+    <Property Name="ID_Mouse" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Catch_ID" Type="int" Nullable="false" />
+    <Property Name="Type_ID" Type="int" Nullable="false" />
+    <Property Name="Pregnancy_ID" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Age" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Embryos_Amount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pregnancy">
+    <Key>
+      <PropertyRef Name="ID_Pregnancy" />
+    </Key>
+    <Property Name="ID_Pregnancy" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleCode" />
+    </Key>
+    <Property Name="RoleCode" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stations">
+    <Key>
+      <PropertyRef Name="ID_Station" />
+    </Key>
+    <Property Name="ID_Station" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Types">
+    <Key>
+      <PropertyRef Name="ID_Type" />
+    </Key>
+    <Property Name="ID_Type" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Salt" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserRole" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zones">
+    <Key>
+      <PropertyRef Name="ID_Zone" />
+    </Key>
+    <Property Name="ID_Zone" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "MiceCatch.dbo.CatchesView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="CatchesView">
+    <Key>
+      <PropertyRef Name="DateCatch" />
+      <PropertyRef Name="Distrtict" />
+      <PropertyRef Name="Place" />
+      <PropertyRef Name="Traps_Amount" />
+      <PropertyRef Name="Catched_Amount" />
+    </Key>
+    <Property Name="DateCatch" Type="date" Nullable="false" />
+    <Property Name="zone" Type="varchar" MaxLength="50" />
+    <Property Name="stations" Type="varchar" MaxLength="30" />
+    <Property Name="Biotope" Type="varchar" MaxLength="50" />
+    <Property Name="Distrtict" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Place" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Traps_Amount" Type="int" Nullable="false" />
+    <Property Name="Catched_Amount" Type="int" Nullable="false" />
+    <Property Name="in target" Type="decimal" Precision="13" Scale="6" />
+    <Property Name="Comments" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "MiceCatch.dbo.ProtocolsView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="ProtocolsView">
+    <Key>
+      <PropertyRef Name="Дата исследования" />
+      <PropertyRef Name="Кол-во образцов" />
+      <PropertyRef Name="Результат" />
+    </Key>
+    <Property Name="Дата исследования" Type="date" Nullable="false" />
+    <Property Name="Материал исследования" Type="varchar" MaxLength="30" />
+    <Property Name="Описание материала" Type="varchar" MaxLength="50" />
+    <Property Name="Кол-во образцов" Type="int" Nullable="false" />
+    <Property Name="Метод исследования" Type="varchar" MaxLength="30" />
+    <Property Name="Маркер заболевания" Type="varchar" MaxLength="30" />
+    <Property Name="Результат" Type="int" Nullable="false" />
+    <Property Name="Описание" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <Association Name="FK_Catch_Stations">
+    <End Role="Stations" Type="Self.Stations" Multiplicity="1" />
+    <End Role="Catch" Type="Self.Catch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stations">
+        <PropertyRef Name="ID_Station" />
+      </Principal>
+      <Dependent Role="Catch">
+        <PropertyRef Name="Station_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catch_Zones">
+    <End Role="Zones" Type="Self.Zones" Multiplicity="1" />
+    <End Role="Catch" Type="Self.Catch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zones">
+        <PropertyRef Name="ID_Zone" />
+      </Principal>
+      <Dependent Role="Catch">
+        <PropertyRef Name="Zone_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mouse_Catch">
+    <End Role="Catch" Type="Self.Catch" Multiplicity="1" />
+    <End Role="Mouse" Type="Self.Mouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catch">
+        <PropertyRef Name="ID_Catch" />
+      </Principal>
+      <Dependent Role="Mouse">
+        <PropertyRef Name="Catch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mouse_Pregnancy">
+    <End Role="Pregnancy" Type="Self.Pregnancy" Multiplicity="1" />
+    <End Role="Mouse" Type="Self.Mouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pregnancy">
+        <PropertyRef Name="ID_Pregnancy" />
+      </Principal>
+      <Dependent Role="Mouse">
+        <PropertyRef Name="Pregnancy_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mouse_Types">
+    <End Role="Types" Type="Self.Types" Multiplicity="1" />
+    <End Role="Mouse" Type="Self.Mouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Types">
+        <PropertyRef Name="ID_Type" />
+      </Principal>
+      <Dependent Role="Mouse">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleCode" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище MiceCatchModelContainer">
+    <EntitySet Name="Catch" EntityType="Self.Catch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mouse" EntityType="Self.Mouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pregnancy" EntityType="Self.Pregnancy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stations" EntityType="Self.Stations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zones" EntityType="Self.Zones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CatchesView" EntityType="Self.CatchesView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CatchesView].[DateCatch] AS [DateCatch], 
+    [CatchesView].[zone] AS [zone], 
+    [CatchesView].[stations] AS [stations], 
+    [CatchesView].[Biotope] AS [Biotope], 
+    [CatchesView].[Distrtict] AS [Distrtict], 
+    [CatchesView].[Place] AS [Place], 
+    [CatchesView].[Traps_Amount] AS [Traps_Amount], 
+    [CatchesView].[Catched_Amount] AS [Catched_Amount], 
+    [CatchesView].[in target] AS [in target], 
+    [CatchesView].[Comments] AS [Comments]
+    FROM [dbo].[CatchesView] AS [CatchesView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProtocolsView" EntityType="Self.ProtocolsView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProtocolsView].[Дата исследования] AS [Дата исследования], 
+    [ProtocolsView].[Материал исследования] AS [Материал исследования], 
+    [ProtocolsView].[Описание материала] AS [Описание материала], 
+    [ProtocolsView].[Кол-во образцов] AS [Кол-во образцов], 
+    [ProtocolsView].[Метод исследования] AS [Метод исследования], 
+    [ProtocolsView].[Маркер заболевания] AS [Маркер заболевания], 
+    [ProtocolsView].[Результат] AS [Результат], 
+    [ProtocolsView].[Описание] AS [Описание]
+    FROM [dbo].[ProtocolsView] AS [ProtocolsView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Catch_Stations" Association="Self.FK_Catch_Stations">
+      <End Role="Stations" EntitySet="Stations" />
+      <End Role="Catch" EntitySet="Catch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catch_Zones" Association="Self.FK_Catch_Zones">
+      <End Role="Zones" EntitySet="Zones" />
+      <End Role="Catch" EntitySet="Catch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mouse_Catch" Association="Self.FK_Mouse_Catch">
+      <End Role="Catch" EntitySet="Catch" />
+      <End Role="Mouse" EntitySet="Mouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mouse_Pregnancy" Association="Self.FK_Mouse_Pregnancy">
+      <End Role="Pregnancy" EntitySet="Pregnancy" />
+      <End Role="Mouse" EntitySet="Mouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mouse_Types" Association="Self.FK_Mouse_Types">
+      <End Role="Types" EntitySet="Types" />
+      <End Role="Mouse" EntitySet="Mouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

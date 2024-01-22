@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище MiceCatchModelContainer" CdmEntityContainer="MiceCatchEntities">
+    <EntitySetMapping Name="Catch">
+      <EntityTypeMapping TypeName="MiceCatchModel.Catch">
+        <MappingFragment StoreEntitySet="Catch">
+          <ScalarProperty Name="ID_Catch" ColumnName="ID_Catch" />
+          <ScalarProperty Name="DateCatch" ColumnName="DateCatch" />
+          <ScalarProperty Name="Zone_ID" ColumnName="Zone_ID" />
+          <ScalarProperty Name="Station_ID" ColumnName="Station_ID" />
+          <ScalarProperty Name="Biotope" ColumnName="Biotope" />
+          <ScalarProperty Name="Distrtict" ColumnName="Distrtict" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Coords_X" ColumnName="Coords_X" />
+          <ScalarProperty Name="Coords_Y" ColumnName="Coords_Y" />
+          <ScalarProperty Name="Traps_Amount" ColumnName="Traps_Amount" />
+          <ScalarProperty Name="Catched_Amount" ColumnName="Catched_Amount" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mouse">
+      <EntityTypeMapping TypeName="MiceCatchModel.Mouse">
+        <MappingFragment StoreEntitySet="Mouse">
+          <ScalarProperty Name="ID_Mouse" ColumnName="ID_Mouse" />
+          <ScalarProperty Name="Catch_ID" ColumnName="Catch_ID" />
+          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+          <ScalarProperty Name="Pregnancy_ID" ColumnName="Pregnancy_ID" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Embryos_Amount" ColumnName="Embryos_Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pregnancy">
+      <EntityTypeMapping TypeName="MiceCatchModel.Pregnancy">
+        <MappingFragment StoreEntitySet="Pregnancy">
+          <ScalarProperty Name="ID_Pregnancy" ColumnName="ID_Pregnancy" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stations">
+      <EntityTypeMapping TypeName="MiceCatchModel.Stations">
+        <MappingFragment StoreEntitySet="Stations">
+          <ScalarProperty Name="ID_Station" ColumnName="ID_Station" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="MiceCatchModel.Types">
+        <MappingFragment StoreEntitySet="Types">
+          <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zones">
+      <EntityTypeMapping TypeName="MiceCatchModel.Zones">
+        <MappingFragment StoreEntitySet="Zones">
+          <ScalarProperty Name="ID_Zone" ColumnName="ID_Zone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatchesView">
+      <EntityTypeMapping TypeName="MiceCatchModel.CatchesView">
+        <MappingFragment StoreEntitySet="CatchesView">
+          <ScalarProperty Name="DateCatch" ColumnName="DateCatch" />
+          <ScalarProperty Name="zone" ColumnName="zone" />
+          <ScalarProperty Name="stations" ColumnName="stations" />
+          <ScalarProperty Name="Biotope" ColumnName="Biotope" />
+          <ScalarProperty Name="Distrtict" ColumnName="Distrtict" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Traps_Amount" ColumnName="Traps_Amount" />
+          <ScalarProperty Name="Catched_Amount" ColumnName="Catched_Amount" />
+          <ScalarProperty Name="in_target" ColumnName="in target" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProtocolsView">
+      <EntityTypeMapping TypeName="MiceCatchModel.ProtocolsView">
+        <MappingFragment StoreEntitySet="ProtocolsView">
+          <ScalarProperty Name="Дата_исследования" ColumnName="Дата исследования" />
+          <ScalarProperty Name="Материал_исследования" ColumnName="Материал исследования" />
+          <ScalarProperty Name="Описание_материала" ColumnName="Описание материала" />
+          <ScalarProperty Name="Кол_во_образцов" ColumnName="Кол-во образцов" />
+          <ScalarProperty Name="Метод_исследования" ColumnName="Метод исследования" />
+          <ScalarProperty Name="Маркер_заболевания" ColumnName="Маркер заболевания" />
+          <ScalarProperty Name="Результат" ColumnName="Результат" />
+          <ScalarProperty Name="Описание" ColumnName="Описание" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="MiceCatchModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="MiceCatchModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

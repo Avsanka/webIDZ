@@ -1,0 +1,31 @@
+﻿@model List<webIDZ.Models.Entities.Mouse>
+@{
+    ViewBag.Title = "MiceList";
+}
+
+<h2>MiceList</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th class="text-center">Дата отлова</th>
+        <th class="text-center">Вид </th>
+        <th class="text-center">Состояние</th>
+        <th class="text-center">Пол</th>
+        <th class="text-center">#</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var c in Model)
+        {
+        <tr class="text-center">
+            <td>@c.Catch.datacatch</td>
+            <td>@c.Types.Name</td>
+            <td>@c.Pregnancy.Name</td>
+            <td>@c.Gender</td>
+            <td>@Html.ActionLink("Подробнее", "MouseDetails", "main", new { mouseID = c.ID_Mouse }, null)</td>
+        </tr>
+        }
+    </tbody>
+</table>

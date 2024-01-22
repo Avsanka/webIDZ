@@ -1,0 +1,174 @@
+﻿@model webIDZ.Models.Entities.Catch
+
+@{
+    ViewBag.Title = "CatchDetails";
+}
+
+<h2>Отлов от @Model.datacatch</h2>
+<div>
+    <h4>Подробная ифнормация</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.datacatch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datacatch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zones.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stations.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Biotope)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Biotope)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distrtict)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distrtict)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Place)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coords_X)
+        </dt>
+
+        <dd>
+            @Model.Coords_X
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coords_Y)
+        </dt>
+
+        <dd>
+            @Model.Coords_Y
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Traps_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Traps_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catched_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catched_Amount)
+        </dd>
+
+
+
+    </dl>
+</div>
+
+@*<div class="row">
+    <div class="col-md-1">@Html.LabelFor(m => m.datacatch) </div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.datacatch)</div>
+
+    <div class="col-md-1">@Html.LabelFor(m => m.Distrtict)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Distrtict)</div>
+
+    <div class="col-md-1">@Html.LabelFor(m => m.Place)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Place)</div>
+
+</div>
+
+
+<div class="row">
+
+
+    <div class="col-md-1">@Html.LabelFor(m => m.Biotope)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Biotope)</div>
+
+    <div class="col-md-1">@Html.LabelFor(m => m.Stations.Name)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Stations.Name)</div>
+
+    <div class="col-md-1">@Html.LabelFor(m => m.Zones.Name)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Zones.Name)</div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-1">@Html.LabelFor(m => m.Traps_Amount)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Traps_Amount)</div>
+
+    <div class="col-md-1">@Html.LabelFor(m => m.Catched_Amount)</div>
+    <div class="col-md-3">@Html.DisplayFor(m => m.Catched_Amount)</div>
+
+</div>*@
+
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Посмотреть комментарии
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Комментарии</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               @Html.DisplayFor(m => m.Comments)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Назад", "CatchesList") |
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Редактировать", "EditCatch", new { controller = "main", catchID = Model.ID_Catch }, null);
+    }
+    <a href="https://geotree.ru/coordinates?lat=56.61318&lon=84.81205&z=13&mlat=56.602345&mlon=84.812345&c="></a>
+</p>
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Catch }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+

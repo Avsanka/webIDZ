@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MiceCatchModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Catch">
+    <Key>
+      <PropertyRef Name="ID_Catch" />
+    </Key>
+    <Property Name="ID_Catch" Type="Int32" Nullable="false" />
+    <Property Name="DateCatch" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Zone_ID" Type="Int32" Nullable="false" />
+    <Property Name="Station_ID" Type="Int32" Nullable="false" />
+    <Property Name="Biotope" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Distrtict" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Coords_X" Type="Decimal" Precision="8" Scale="6" Nullable="false" />
+    <Property Name="Coords_Y" Type="Decimal" Precision="8" Scale="6" Nullable="false" />
+    <Property Name="Traps_Amount" Type="Int32" Nullable="false" />
+    <Property Name="Catched_Amount" Type="Int32" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Stations" Relationship="Self.FK_Catch_Stations" FromRole="Catch" ToRole="Stations" />
+    <NavigationProperty Name="Zones" Relationship="Self.FK_Catch_Zones" FromRole="Catch" ToRole="Zones" />
+    <NavigationProperty Name="Mouse" Relationship="Self.FK_Mouse_Catch" FromRole="Catch" ToRole="Mouse" />
+  </EntityType>
+  <EntityType Name="Mouse">
+    <Key>
+      <PropertyRef Name="ID_Mouse" />
+    </Key>
+    <Property Name="ID_Mouse" Type="Guid" Nullable="false" />
+    <Property Name="Catch_ID" Type="Int32" Nullable="false" />
+    <Property Name="Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Pregnancy_ID" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Embryos_Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catch" Relationship="Self.FK_Mouse_Catch" FromRole="Mouse" ToRole="Catch" />
+    <NavigationProperty Name="Pregnancy" Relationship="Self.FK_Mouse_Pregnancy" FromRole="Mouse" ToRole="Pregnancy" />
+    <NavigationProperty Name="Types" Relationship="Self.FK_Mouse_Types" FromRole="Mouse" ToRole="Types" />
+  </EntityType>
+  <EntityType Name="Pregnancy">
+    <Key>
+      <PropertyRef Name="ID_Pregnancy" />
+    </Key>
+    <Property Name="ID_Pregnancy" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Mouse" Relationship="Self.FK_Mouse_Pregnancy" FromRole="Pregnancy" ToRole="Mouse" />
+  </EntityType>
+  <EntityType Name="Stations">
+    <Key>
+      <PropertyRef Name="ID_Station" />
+    </Key>
+    <Property Name="ID_Station" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Catch" Relationship="Self.FK_Catch_Stations" FromRole="Stations" ToRole="Catch" />
+  </EntityType>
+  <EntityType Name="Types">
+    <Key>
+      <PropertyRef Name="ID_Type" />
+    </Key>
+    <Property Name="ID_Type" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Mouse" Relationship="Self.FK_Mouse_Types" FromRole="Types" ToRole="Mouse" />
+  </EntityType>
+  <EntityType Name="Zones">
+    <Key>
+      <PropertyRef Name="ID_Zone" />
+    </Key>
+    <Property Name="ID_Zone" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Catch" Relationship="Self.FK_Catch_Zones" FromRole="Zones" ToRole="Catch" />
+  </EntityType>
+  <EntityType Name="CatchesView">
+    <Key>
+      <PropertyRef Name="DateCatch" />
+      <PropertyRef Name="Distrtict" />
+      <PropertyRef Name="Place" />
+      <PropertyRef Name="Traps_Amount" />
+      <PropertyRef Name="Catched_Amount" />
+    </Key>
+    <Property Name="DateCatch" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="zone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="stations" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Biotope" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Distrtict" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Traps_Amount" Type="Int32" Nullable="false" />
+    <Property Name="Catched_Amount" Type="Int32" Nullable="false" />
+    <Property Name="in_target" Type="Decimal" Precision="13" Scale="6" />
+    <Property Name="Comments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProtocolsView">
+    <Key>
+      <PropertyRef Name="Дата_исследования" />
+      <PropertyRef Name="Кол_во_образцов" />
+      <PropertyRef Name="Результат" />
+    </Key>
+    <Property Name="Дата_исследования" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Материал_исследования" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Описание_материала" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Кол_во_образцов" Type="Int32" Nullable="false" />
+    <Property Name="Метод_исследования" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Маркер_заболевания" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Результат" Type="Int32" Nullable="false" />
+    <Property Name="Описание" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Catch_Stations">
+    <End Role="Stations" Type="Self.Stations" Multiplicity="1" />
+    <End Role="Catch" Type="Self.Catch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stations">
+        <PropertyRef Name="ID_Station" />
+      </Principal>
+      <Dependent Role="Catch">
+        <PropertyRef Name="Station_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catch_Zones">
+    <End Role="Zones" Type="Self.Zones" Multiplicity="1" />
+    <End Role="Catch" Type="Self.Catch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zones">
+        <PropertyRef Name="ID_Zone" />
+      </Principal>
+      <Dependent Role="Catch">
+        <PropertyRef Name="Zone_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mouse_Catch">
+    <End Role="Catch" Type="Self.Catch" Multiplicity="1" />
+    <End Role="Mouse" Type="Self.Mouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catch">
+        <PropertyRef Name="ID_Catch" />
+      </Principal>
+      <Dependent Role="Mouse">
+        <PropertyRef Name="Catch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mouse_Pregnancy">
+    <End Role="Pregnancy" Type="Self.Pregnancy" Multiplicity="1" />
+    <End Role="Mouse" Type="Self.Mouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pregnancy">
+        <PropertyRef Name="ID_Pregnancy" />
+      </Principal>
+      <Dependent Role="Mouse">
+        <PropertyRef Name="Pregnancy_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mouse_Types">
+    <End Role="Types" Type="Self.Types" Multiplicity="1" />
+    <End Role="Mouse" Type="Self.Mouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Types">
+        <PropertyRef Name="ID_Type" />
+      </Principal>
+      <Dependent Role="Mouse">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MiceCatchEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Catch" EntityType="Self.Catch" />
+    <EntitySet Name="Mouse" EntityType="Self.Mouse" />
+    <EntitySet Name="Pregnancy" EntityType="Self.Pregnancy" />
+    <EntitySet Name="Stations" EntityType="Self.Stations" />
+    <EntitySet Name="Types" EntityType="Self.Types" />
+    <EntitySet Name="Zones" EntityType="Self.Zones" />
+    <EntitySet Name="CatchesView" EntityType="Self.CatchesView" />
+    <EntitySet Name="ProtocolsView" EntityType="Self.ProtocolsView" />
+    <AssociationSet Name="FK_Catch_Stations" Association="Self.FK_Catch_Stations">
+      <End Role="Stations" EntitySet="Stations" />
+      <End Role="Catch" EntitySet="Catch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catch_Zones" Association="Self.FK_Catch_Zones">
+      <End Role="Zones" EntitySet="Zones" />
+      <End Role="Catch" EntitySet="Catch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mouse_Catch" Association="Self.FK_Mouse_Catch">
+      <End Role="Catch" EntitySet="Catch" />
+      <End Role="Mouse" EntitySet="Mouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mouse_Pregnancy" Association="Self.FK_Mouse_Pregnancy">
+      <End Role="Pregnancy" EntitySet="Pregnancy" />
+      <End Role="Mouse" EntitySet="Mouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mouse_Types" Association="Self.FK_Mouse_Types">
+      <End Role="Types" EntitySet="Types" />
+      <End Role="Mouse" EntitySet="Mouse" />
+    </AssociationSet>
+    <EntitySet Name="Role" EntityType="MiceCatchModel.Role" />
+    <EntitySet Name="User" EntityType="MiceCatchModel.User" />
+    <AssociationSet Name="FK_User_Role" Association="MiceCatchModel.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleCode" />
+    </Key>
+    <Property Name="RoleCode" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="MiceCatchModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Guid" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Salt" Type="Guid" Nullable="false" />
+    <Property Name="UserRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="MiceCatchModel.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Type="MiceCatchModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="MiceCatchModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleCode" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
