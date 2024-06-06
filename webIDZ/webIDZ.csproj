@@ -179,6 +179,7 @@
       <DependentUpon>dataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\CatchVM.cs" />
+    <Compile Include="Models\ViewModels\MouseVM.cs" />
     <Compile Include="Models\ViewModels\UserVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

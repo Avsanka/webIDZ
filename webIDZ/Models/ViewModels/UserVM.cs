@@ -19,3 +19,4 @@ namespace webIDZ.Models.ViewModels
         public string Password { get; set; }
     }
 }
+

@@ -8,7 +8,7 @@
 <div>
     <h4>Подробная ифнормация</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" style="font-size: medium;">
         <dt>
             @Html.DisplayNameFor(model => model.datacatch)
         </dt>
@@ -94,44 +94,6 @@
     </dl>
 </div>
 
-@*<div class="row">
-    <div class="col-md-1">@Html.LabelFor(m => m.datacatch) </div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.datacatch)</div>
-
-    <div class="col-md-1">@Html.LabelFor(m => m.Distrtict)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Distrtict)</div>
-
-    <div class="col-md-1">@Html.LabelFor(m => m.Place)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Place)</div>
-
-</div>
-
-
-<div class="row">
-
-
-    <div class="col-md-1">@Html.LabelFor(m => m.Biotope)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Biotope)</div>
-
-    <div class="col-md-1">@Html.LabelFor(m => m.Stations.Name)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Stations.Name)</div>
-
-    <div class="col-md-1">@Html.LabelFor(m => m.Zones.Name)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Zones.Name)</div>
-
-
-</div>
-
-
-<div class="row">
-    <div class="col-md-1">@Html.LabelFor(m => m.Traps_Amount)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Traps_Amount)</div>
-
-    <div class="col-md-1">@Html.LabelFor(m => m.Catched_Amount)</div>
-    <div class="col-md-3">@Html.DisplayFor(m => m.Catched_Amount)</div>
-
-</div>*@
-
 
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -151,7 +113,7 @@
                @Html.DisplayFor(m => m.Comments)
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>
@@ -162,13 +124,13 @@
     @if (User.IsInRole("Admin"))
     {
         @Html.ActionLink("Редактировать", "EditCatch", new { controller = "main", catchID = Model.ID_Catch }, null);
+    } |
+    @if (User.IsInRole("Admin")) { 
+        @Html.ActionLink("Cписок мышей", "MiceList", new { controller = "main", catchID = Model.ID_Catch }, null);
+        @*@Html.ActionLink("Добавить новую мышь", "CreateMouse", new { controller = "main", catchID = Model.ID_Catch }, new { @class = "btn btn-default" })*@
     }
-    <a href="https://geotree.ru/coordinates?lat=56.61318&lon=84.81205&z=13&mlat=56.602345&mlon=84.812345&c="></a>
+    @*<a href="https://geotree.ru/coordinates?mlat=@Model.Coords_X&mlon=@Model.Coords_Y&c=">Посмотреть на карте</a>*@
 </p>
 
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Catch }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
 
 

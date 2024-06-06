@@ -301,74 +301,74 @@ namespace webIDZ.Controllers
             return url;
         }
 
-    //    [HttpGet]
-    //    public ActionResult CreateMouse()
-    //    {
-    //        return View();
-    //    }
+        [HttpGet]
+        public ActionResult CreateMouse()
+        {
+            return View();
+        }
 
 
-    //    public ActionResult MiceList(int catchID)
-    //    {
-    //        List<Mouse> mice = new List<Mouse>();
-    //        using (var db = new MiceCatchEntities())
-    //        {
-    //            mice = db.Mouse.OrderByDescending(x => x.Catch.DateCatch).Where(x => x.Catch_ID == catchID).ToList();
-    //            foreach (Mouse m in mice)
-    //            {
-    //                m.Catch = db.Catch.Find(m.Catch_ID);
-    //                m.Types = db.Types.Find(m.Type_ID);
-    //                m.Pregnancy = db.Pregnancy.Find(m.Pregnancy_ID);
-    //            }
-    //        }
-    //        return View(mice);
-    //    }
+        public ActionResult MiceList(int catchID)
+        {
+            List<Mouse> mice = new List<Mouse>();
+            using (var db = new MiceCatchEntities())
+            {
+                mice = db.Mouse.OrderByDescending(x => x.Catch.DateCatch).Where(x => x.Catch_ID == catchID).ToList();
+                foreach (Mouse m in mice)
+                {
+                    m.Catch = db.Catch.Find(m.Catch_ID);
+                    m.Types = db.Types.Find(m.Type_ID);
+                    m.Pregnancy = db.Pregnancy.Find(m.Pregnancy_ID);
+                }
+            }
+            return View(mice);
+        }
 
-    //    [HttpGet]
+        [HttpGet]
 
-    //    public ActionResult MouseDetails(Guid mouseID)
-    //    {
-    //        Mouse mouse = new Mouse();
-    //        using (var db = new MiceCatchEntities())
-    //        {
-    //            mouse = db.Mouse.Find(mouseID);
-    //            mouse.Catch = db.Catch.Find(mouse.Catch_ID);
-    //            mouse.Pregnancy = db.Pregnancy.Find(mouse.Pregnancy_ID);
-    //            mouse.Types = db.Types.Find(mouse.Type_ID);
-    //        }
-    //        return View(mouse);
-    //    }
-
-
-    //    [HttpPost]
-    //    [ValidateAntiForgeryToken]
-    //    [Authorize(Roles = "Admin")]
-    //    public ActionResult CreateMouse(MouseVM newMouse, int cid)
-    //    {
-    //        if (ModelState.IsValid)
-    //        {
-    //            using (var db = new MiceCatchEntities())
-    //            {
-    //                Mouse m = new Mouse()
-    //                {
-    //                    ID_Mouse = Guid.NewGuid(),
-    //                    Catch_ID = cid,
-    //                    Type_ID = newMouse.Type_ID,
-    //                    Pregnancy_ID = newMouse.Pregnancy_ID,
-    //                    Gender = newMouse.Gender,
-    //                    Age = newMouse.Age,
-    //                    Embryos_Amount = newMouse.Embryos_Amount
-                        
-    //                };
+        public ActionResult MouseDetails(Guid mouseID)
+        {
+            Mouse mouse = new Mouse();
+            using (var db = new MiceCatchEntities())
+            {
+                mouse = db.Mouse.Find(mouseID);
+                mouse.Catch = db.Catch.Find(mouse.Catch_ID);
+                mouse.Pregnancy = db.Pregnancy.Find(mouse.Pregnancy_ID);
+                mouse.Types = db.Types.Find(mouse.Type_ID);
+            }
+            return View(mouse);
+        }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateMouse(MouseVM newMouse, int cid)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new MiceCatchEntities())
+                {
+                    Mouse m = new Mouse()
+                    {
+                        ID_Mouse = Guid.NewGuid(),
+                        Catch_ID = cid,
+                        Type_ID = newMouse.Type_ID,
+                        Pregnancy_ID = newMouse.Pregnancy_ID,
+                        Gender = newMouse.Gender,
+                        Age = newMouse.Age,
+                        Embryos_Amount = newMouse.Embryos_Amount
 
-    //                db.Mouse.Add(m);
-    //                db.SaveChanges();
-    //            }
-    //            return RedirectToAction("CatchesList");
-    //        }
-    //        return View(newMouse);
-    //    }
+                    };
+
+
+
+                    db.Mouse.Add(m);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("CatchesList");
+            }
+            return View(newMouse);
+        }
     }
 }
